@@ -1,0 +1,19 @@
+// {
+//   "files.associations": {
+//     "iostream": "cpp"
+//   },
+//   "github.copilot.editor.enableAutoCompletions": false,
+// }
+
+{
+  "github.copilot.enable": {
+  "*": true,
+      "cpp": false,
+},
+"C_Cpp.formatting": "default",
+"C_Cpp.vcFormat.indent.caseContentsWhenBlock": true,
+"editor.defaultFormatter": null,
+"files.associations": {
+  "iostream": "cpp"
+},
+}
