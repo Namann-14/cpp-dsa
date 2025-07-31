@@ -7,9 +7,12 @@
 
 {
   "github.copilot.enable": {
-  "*": true,
-      "cpp": false,
-},
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "cpp": false
+  },
 "C_Cpp.formatting": "default",
 "C_Cpp.vcFormat.indent.caseContentsWhenBlock": true,
 "editor.defaultFormatter": null,
