@@ -17,6 +17,8 @@
 "C_Cpp.vcFormat.indent.caseContentsWhenBlock": true,
 "editor.defaultFormatter": null,
 "files.associations": {
-  "iostream": "cpp"
+  ".env*": "dotenv",
+  "iostream": "cpp",
+  "vector": "cpp"
 },
 }
