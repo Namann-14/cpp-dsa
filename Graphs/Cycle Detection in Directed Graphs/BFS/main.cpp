@@ -1,27 +1,23 @@
-// https://www.geeksforgeeks.org/problems/topological-sort/1
-
-// step 1: find indegree
-// step 2: 0 indegree walo ko queue mein push kardo
-// step 3: do bfs
+// https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1
 #include <bits/stdc++.h>
 using namespace std;
 
 class Solution {
     private:
         unordered_map<int, vector<int>>mp;
-        stack<int>s;
         void populate(vector<vector<int>>& edges) {
             for (int i = 0; i < edges.size(); i++) {
                 int u = edges[i][0];
                 int v = edges[i][1];
+
+                // directed graph
                 mp[u].push_back(v);
             }
         }
     public:
-        vector<int> topoSort(int n, vector<vector<int>>& edges) {
+        bool isCyclic(int n, vector<vector<int>> &edges) {
             populate(edges);
             vector<int>indegree(n);
-            vector<int>ans;
             for (auto x : mp) {
                 for (auto y : x.second) {
                     indegree[y]++;
@@ -29,23 +25,23 @@ class Solution {
             }
             queue<int>q;
             for (int i = 0; i < n; i++) {
-                if (indegree[i] == 0) {
+                if (indegree[i]==0) {
                     q.push(i);
                 }
             }
+            int count = 0;
             while (!q.empty()) {
                 int front = q.front();
                 q.pop();
-
-                ans.push_back(front);
-
-                for (auto neighbour : mp[front]) {
+                count++;
+                for (int neighbour : mp[front]) {
                     indegree[neighbour]--;
                     if (indegree[neighbour] == 0) {
                         q.push(neighbour);
                     }
                 }
             }
-            return ans;
+
+            return count != n;
         }
 };
