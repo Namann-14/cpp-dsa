@@ -1,0 +1,53 @@
+// https://www.geeksforgeeks.org/problems/minimum-spanning-tree/1
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+    private:
+        unordered_map<int, vector<pair<int, int>>>mp;
+        void pop(vector<vector<int>>& edges) {
+            for (int i = 0; i < edges.size(); i++) {
+                int u = edges[i][0];
+                int v = edges[i][1];
+                int w = edges[i][2];
+
+                mp[u].push_back({v, w});
+                mp[v].push_back({u, w});
+            }
+        }
+    public:
+        int spanningTree(int V, vector<vector<int>>& edges) {
+            pop(edges);
+            vector<int>distance(V, INT_MAX);
+            vector<bool>vis(V, false);
+            vector<int>parent(V, -1);
+            
+            distance[0] = 0;
+            parent[0] = -1;
+
+            for (int i = 0; i < V - 1; i++) {
+                int mini = INT_MAX;
+                int idx = -1;
+
+                for (int val = 0; val < V; val++) {
+                    if (!vis[val] && distance[val] < mini) {
+                        mini = distance[val];
+                        idx = val;
+                    }
+                }
+
+                vis[idx] = 1;
+
+                for (auto nbr : mp[idx]) {
+                    int v = nbr.first;
+                    int w = nbr.second;
+
+                    if (!vis[v] && w < distance[v]) {
+                        distance[v] = w;
+                        parent[v] = idx;
+                    }
+                }
+            }
+            return accumulate(distance.begin(), distance.end(), 0);
+        }
+};
