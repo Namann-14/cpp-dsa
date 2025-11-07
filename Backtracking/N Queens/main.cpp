@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/n-queens/
+#include<bits/stdc++.h>
 class Solution {
 private:
     vector<string> add(vector<vector<bool>>& vis, int n) {

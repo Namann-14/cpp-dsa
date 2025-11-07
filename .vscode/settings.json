@@ -112,4 +112,7 @@
   "valarray": "cpp",
   "variant": "cpp"
 },
+"[java]": {
+  "editor.defaultFormatter": "redhat.java"
+},
 }
