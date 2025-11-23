@@ -1,5 +1,7 @@
 // https://www.naukri.com/code360/problems/build-min-heap_1171167?leftPanelTab=0&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbar&leftPanelTabValue=PROBLEM
 #include <bits/stdc++.h> 
+using namespace std;
+
 void solve(vector<int>& arr, int n, int i) {
     int smallest = i;
     int leftIdx = 2 * i + 1;
@@ -17,6 +19,9 @@ void solve(vector<int>& arr, int n, int i) {
 }
 vector<int> buildMinHeap(vector<int> &arr){
     int n = arr.size();
+    // start from n/2 - 1 because leaf nodes don't need heapification
+    // it's an optimization
+    // In a binary heap, the last n/2 elements are leaf nodes
     for (int i = n/2 - 1; i >= 0; i--) {
         solve(arr, n, i);
     }
@@ -24,3 +29,21 @@ vector<int> buildMinHeap(vector<int> &arr){
 }
 
 
+
+class Solution {
+  public:
+    int minCost(vector<int>& arr) {
+        priority_queue<int, vector<int>, greater<int>>pq;
+        for (int num : arr) {
+            pq.push(num);
+        }
+        while (!pq.size() <= 1) {
+            int a = pq.top();
+            pq.pop();
+            int b = pq.top();
+            pq.pop();
+            pq.push(a + b);
+        }
+        return pq.top();
+    }
+};

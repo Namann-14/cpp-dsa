@@ -4,7 +4,6 @@ using namespace std;
 class Heap {
     private:
         vector<int> nums;
-
         void heapifyUp(int idx) {
             if (idx == 0) return;
             int parent = (idx - 1) / 2;

@@ -1,4 +1,7 @@
 // https://www.geeksforgeeks.org/problems/heap-sort/1
+#include <bits/stdc++.h>
+using namespace std;
+
 class Solution {
   private:
     void solve(vector<int>& nums, int n, int idx) {
