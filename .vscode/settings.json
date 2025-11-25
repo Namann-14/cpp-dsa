@@ -115,4 +115,7 @@
 "[java]": {
   "editor.defaultFormatter": "redhat.java"
 },
+"[cpp]": {
+  "editor.defaultFormatter": "ms-vscode.cpptools"
+},
 }
