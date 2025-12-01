@@ -1,23 +1,24 @@
-// https://www.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1
 #include <bits/stdc++.h>
 using namespace std;
 
 class Solution {
 private:
-    unordered_map<int, vector<pair<int, int>>> mp;
-    void populate(vector<vector<int>>& edges) {
+    unordered_map<int, vector<pair<int,int>>>mp;
+    void pop(vector<vector<int>>& edges) {
         for (int i = 0; i < edges.size(); i++) {
             int u = edges[i][0];
             int v = edges[i][1];
             int w = edges[i][2];
+
             mp[u].push_back({v, w});
+            mp[v].push_back({u, w});
         }
     }
 public:
     vector<int> dijkstra(int V, vector<vector<int>> &edges, int src) {
-        populate(edges);
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-        vector<int> dist(V, INT_MAX);
+        pop(edges);
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>>pq;
+        vector<int>dist(V, 1e9);
         pq.push({0, src});
         dist[src] = 0;
         while (!pq.empty()) {
@@ -26,10 +27,10 @@ public:
 
             if (d > dist[node]) continue;
 
-            for (auto [adj, wt] : mp[node]) {
-                if (dist[adj] > d + wt) {
-                    dist[adj] = d + wt;
-                    pq.push({dist[adj], adj});
+            for (auto [nbr, wt] : mp[node]) {
+                if (dist[nbr] > d + wt) {
+                    dist[nbr] = d + wt;
+                    pq.push({dist[nbr], nbr});
                 }
             }
         }
