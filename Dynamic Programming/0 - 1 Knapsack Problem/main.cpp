@@ -25,7 +25,7 @@ class Solution {
     public:
         int knapsack(int w, vector<int> &val, vector<int> &wt) {
             int n = val.size();
-            return solve(n- 1, n, w, val, wt);
+            return solve(n - 1, n, w, val, wt);
         }
 };
 

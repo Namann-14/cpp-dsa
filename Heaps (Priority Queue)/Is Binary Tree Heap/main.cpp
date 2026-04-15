@@ -9,15 +9,13 @@ class Solution {
     bool isCBT(Node* root, int idx, int count) {
         if (!root) return true;
         if (idx >= count) return false;
-        return isCBT(root->left, 2 * idx + 1, count) &&
-               isCBT(root->right, 2 * idx + 2, count);
+        return isCBT(root->left, 2 * idx + 1, count) && isCBT(root->right, 2 * idx + 2, count);
     }
 
     bool isMaxi(Node* root) {
         if (!root->left && !root->right) return true;
 
-        if (root->left && !root->right)
-            return (root->data >= root->left->data) && isMaxi(root->left);
+        if (root->left && !root->right) return (root->data >= root->left->data) && isMaxi(root->left);
 
         if (root->left && root->right)
             return (root->data >= root->left->data) &&
